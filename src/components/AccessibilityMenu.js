@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { FaPlus, FaMinus, FaAdjust, FaSun, FaMoon, FaLightbulb } from 'react-icons/fa'; // Ícones
+import { ThemeContext } from '../context/ThemeContext'; // Importa o contexto de tema global
 
 const AccessibilityMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isDarkMode, toggleDarkMode, isHighContrast, toggleHighContrast } = useContext(ThemeContext); // Use o contexto para acessar o estado global
+  const [isOpen, setIsOpen] = useState(false); // Estado para controlar o menu de acessibilidade
   const [fontSize, setFontSize] = useState(16); // Estado para o tamanho da fonte
-  const [isHighContrast, setIsHighContrast] = useState(false); // Estado para alto contraste
-  const [isDarkMode, setIsDarkMode] = useState(false); // Estado para modo escuro
   const [brightness, setBrightness] = useState(1); // Estado para o brilho (1 é o padrão)
 
   // Aumentar tamanho da fonte
@@ -22,18 +22,6 @@ const AccessibilityMenu = () => {
       setFontSize(fontSize - 2);
       document.body.style.fontSize = `${fontSize - 2}px`;
     }
-  };
-
-  // Alternar modo de alto contraste
-  const toggleHighContrast = () => {
-    setIsHighContrast(!isHighContrast);
-    document.body.classList.toggle('high-contrast');
-  };
-
-  // Alternar entre modo escuro e claro
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('dark-mode');
   };
 
   // Ajustar brilho da página
@@ -53,13 +41,16 @@ const AccessibilityMenu = () => {
 
   return (
     <div className="relative">
+      {/* Botão para abrir o menu */}
       {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
         className="text-recifeGold font-bold text-xl"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}  // Alterna o menu
       >
         Acessibilidade
       </button>
+
+      {/* Menu de acessibilidade */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-10">
           <ul className="py-1 text-gray-700">

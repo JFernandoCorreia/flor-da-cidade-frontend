@@ -5,9 +5,7 @@ function Navbar() {
   const location = useLocation();  // Pega a rota atual
 
   // Verifica se a rota atual é uma das rotas de Cadastro ou Login
-  const showNavbar = location.pathname === '/register' ||
-                     location.pathname === '/login-funcionario' ||
-                     location.pathname === '/login-usuario';
+  const showNavbar = location.pathname === '/register' || location.pathname === '/login';
 
   // Estado para controlar o menu de hambúrguer (mobile)
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +19,6 @@ function Navbar() {
     showNavbar && (
       <nav className="bg-recifeBlue text-recifeGold p-4">
         <div className="container mx-auto flex justify-start items-center">
-          
           <div className="text-lg font-bold mr-4">
             <Link to="/">Homepage</Link>
           </div>
@@ -49,23 +46,6 @@ function Navbar() {
               </svg>
             </button>
           </div>
-
-          {/* Links da Navbar - visível apenas em telas maiores (md e acima) */}
-          <div className="hidden md:flex space-x-4">
-            {/* Lógica para mostrar os botões com base na página atual */}
-            {location.pathname === '/login-funcionario' && (
-              <>
-                <Link className="hover:text-recifeLight font-bold text-lg mr-4" to="/login-usuario">Login de Usuário</Link>
-                <Link className="hover:text-recifeLight font-bold text-lg mr-4" to="/register">Cadastrar</Link>
-              </>
-            )}
-            {location.pathname === '/login-usuario' && (
-              <>
-                <Link className="hover:text-recifeLight font-bold text-lg mr-4" to="/login-funcionario">Login de Funcionário</Link>
-                <Link className="hover:text-recifeLight font-bold text-lg mr-4" to="/register">Cadastrar</Link>
-              </>
-            )}
-          </div>
         </div>
 
         {/* Menu Mobile - visível apenas se isOpen for verdadeiro */}
@@ -76,30 +56,11 @@ function Navbar() {
               to="/"
               onClick={toggleMenu}>Homepage</Link>
 
-            {/* Mesma lógica para exibir os botões no mobile */}
-            {location.pathname === '/login-funcionario' && (
-              <>
-                <Link
-                  className="block text-recifeGold hover:text-recifeLight font-bold text-lg mr-4"
-                  to="/login-usuario"
-                  onClick={toggleMenu}>Login de Usuário</Link>
-                <Link
-                  className="block text-recifeGold hover:text-recifeLight font-bold text-lg mr-4"
-                  to="/register"
-                  onClick={toggleMenu}>Cadastrar</Link>
-              </>
-            )}
-            {location.pathname === '/login-usuario' && (
-              <>
-                <Link
-                  className="block text-recifeGold hover:text-recifeLight font-bold text-lg mr-4"
-                  to="/login-funcionario"
-                  onClick={toggleMenu}>Login de Funcionário</Link>
-                <Link
-                  className="block text-recifeGold hover:text-recifeLight font-bold text-lg mr-4"
-                  to="/register"
-                  onClick={toggleMenu}>Cadastrar</Link>
-              </>
+            {location.pathname === '/login' && (
+              <Link
+                className="block text-recifeGold hover:text-recifeLight font-bold text-lg mr-4"
+                to="/register"
+                onClick={toggleMenu}>Cadastro de Interessados</Link>
             )}
           </div>
         )}

@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000',  // Ajuste conforme o ambiente de desenvolvimento/produção
@@ -17,5 +17,16 @@ api.interceptors.request.use((config) => {
 }, (error) => {
   return Promise.reject(error);
 });
+
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response && error.response.status === 401) {
+      // Token inválido ou expirado - redirecionar para a página de login ou realizar logout
+      console.error("Sessão expirada. Faça login novamente.");
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;

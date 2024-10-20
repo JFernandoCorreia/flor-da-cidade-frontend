@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { useState } from 'react';
 import api from '../services/api';
 import axios from 'axios';
@@ -5,12 +7,23 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage = () => {
-  const [user, setUser] = useState({
-    name: '', email: '', cpf: '', cep: '', address: '', bairro: '', city: '', state: '', phone: '', matricula: '', setor: '', password: ''
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    cpf: '',
+    cep: '',
+    address: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    phone: '',
+    matricula: '',
+    setor: '',
+    password: ''
   });
   const [errorMessage, setErrorMessage] = useState('');
-const [successMessage, setSuccessMessage] = useState('');
-
+  const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -29,7 +42,7 @@ const [successMessage, setSuccessMessage] = useState('');
             ...user,
             cep: cep,
             address: data.logradouro,
-            bairro: data.bairro,
+            neighborhood: data.bairro,
             city: data.localidade,
             state: data.uf
           });
@@ -82,6 +95,7 @@ const [successMessage, setSuccessMessage] = useState('');
       console.log(response.data);
       setSuccessMessage('Cadastro realizado com sucesso!');
       toast.success('Cadastro realizado com sucesso!');
+      navigate('/login-usuario', '/login-funionario');
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
       setErrorMessage('Erro ao cadastrar. Por favor, tente novamente.');
@@ -101,28 +115,28 @@ const [successMessage, setSuccessMessage] = useState('');
     <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/path-to-your-background-image.jpg')" }}>
       <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md">
         <label htmlFor="name" className="block mb-2 text-recifeGold">Nome Completo</label>
-        <input type="text" name="name" value={user.name} onChange={handleChange} placeholder="Nome Completo" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="name" value={user.name} onChange={(e) => setUserData({ ...userData, name: e.target.value })} placeholder="Nome Completo" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="email" className="block mb-2 text-recifeGold">E-mail</label>
-        <input type="email" name="email" value={user.email} onChange={handleChange} placeholder="Email" className="block w-full p-2 border rounded text-black" />
+        <input type="email" name="email" value={user.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} placeholder="Email" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="cpf" className="block mb-2 text-recifeGold">CPF</label>
-        <input type="text" name="cpf" value={user.cpf} onChange={handleChange} placeholder="CPF" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="cpf" value={user.cpf} onChange={(e) => setUserData({ ...userData, cpf: e.target.value })} placeholder="CPF" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="cep" className="block mb-2 text-recifeGold">CEP</label>
-        <input type="text" name="cep" value={user.cep} onChange={handleCepChange} placeholder="CEP" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="cep" value={user.cep} onChange={(e) => setUserData({ ...userData, cep: e.target.value })} placeholder="CEP" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="address" className="block mb-2 text-recifeGold">Endereço</label>
-        <input type="text" name="address" value={user.address} onChange={handleChange} placeholder="Endereço" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="address" value={user.address} onChange={(e) => setUserData({ ...userData, address: e.target.value })} placeholder="Endereço" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="bairro" className="block mb-2 text-recifeGold">Bairro</label>
-        <input type="text" name="bairro" value={user.bairro} onChange={handleChange} placeholder="Bairro" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="bairro" value={user.neighborhood} onChange={(e) => setUserData({ ...userData, neighborhood: e.target.value })} placeholder="Bairro" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="city" className="block mb-2 text-recifeGold">Cidade</label>
-        <input type="text" name="city" value={user.city} onChange={handleChange} placeholder="Cidade" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="city" value={user.city} onChange={(e) => setUserData({ ...userData, city: e.target.value })} placeholder="Cidade" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="state" className="block mb-2 text-recifeGold">Estado</label>
-        <select name="state" value={user.state} onChange={handleChange} className="block w-full p-2 border rounded text-black">
+        <select name="state" value={user.state} onChange={(e) => setUserData({ ...userData, state: e.target.value })} placeholder="Estado" className="block w-full p-2 border rounded text-black">
           <option value="">Selecione um estado</option>
           {estados.map(estado => (
             <option key={estado.value} value={estado.value}>{estado.label}</option>
@@ -130,16 +144,16 @@ const [successMessage, setSuccessMessage] = useState('');
         </select>
 
         <label htmlFor="phone" className="block mb-2 text-recifeGold">Telefone</label>
-        <input type="text" name="phone" value={user.phone} onChange={handleChange} placeholder="Telefone" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="phone" value={user.phone}onChange={(e) => setUserData({ ...userData, phone: e.target.value })} placeholder="Telefone" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="matricula" className="block mb-2 text-recifeGold">Matrícula</label>
-        <input type="text" name="matricula" value={user.matricula} onChange={handleChange} placeholder="Matrícula" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="matricula" value={user.matricula} onChange={(e) => setUserData({ ...userData, matricula: e.target.value })} placeholder="Matricula" className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="setor" className="block mb-2 text-recifeGold">Setor</label>
-        <input type="text" name="setor" value={user.setor} onChange={handleChange} placeholder="Setor" className="block w-full p-2 border rounded text-black" />
+        <input type="text" name="setor" value={user.setor} onChange={(e) => setUserData({ ...userData, setor: e.target.value })} placeholder="Setor"   className="block w-full p-2 border rounded text-black" />
 
         <label htmlFor="password" className="block mb-2 text-recifeGold">Senha</label>
-        <input type="password" name="password" value={user.password} onChange={handleChange} placeholder="Senha" className="block w-full p-2 border rounded text-black" />
+        <input type="password" name="password" value={user.password} onChange={(e) => setUserData({ ...userData, password: e.target.value })} placeholder="Senha" className="block w-full p-2 border rounded text-black" />
 
         <button type="submit" className="bg-recifeBlue text-recifeGold px-4 py-2 rounded w-full">Cadastrar</button>
 

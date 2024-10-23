@@ -104,7 +104,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/path-to-your-background-image.jpg')" }}>
+    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/images/baoba.svg')" }}>
       <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md">
         <label htmlFor="name" className="block mb-2 text-recifeGold">Nome Completo</label>
         <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Nome Completo" className="block w-full p-2 border rounded text-black" required />
@@ -118,7 +118,7 @@ const RegisterPage = () => {
         <label htmlFor="cep" className="block mb-2 text-recifeGold">CEP</label>
         <input type="text" name="cep" value={userData.cep} onChange={handleCepChange} placeholder="CEP" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="address" className="block mb-2 text-recifeGold">Endereço</label>
+        <label htmlFor="address" className="block mb-2 text-recifeGold">Logradouro</label>
         <input type="text" name="address" value={userData.address} onChange={handleChange} placeholder="Endereço" className="block w-full p-2 border rounded text-black" required />
 
         <label htmlFor="bairro" className="block mb-2 text-recifeGold">Bairro</label>

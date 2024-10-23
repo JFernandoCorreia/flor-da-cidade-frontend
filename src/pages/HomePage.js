@@ -7,27 +7,34 @@ const HomePage = () => {
     <div className="relative h-screen flex flex-col">
       <header className="bg-recifeBlue p-4 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
+          {/* Texto da Secretaria */}
           <div className="flex flex-col items-start">
             <h1 className="text-recifeGold font-bold text-lg">Secretaria de Agricultura Urbana</h1>
           </div>
-          <h1 className="text-recifeGold text-4xl font-bold mx-auto text-center">Flor da Cidade</h1>
+
+          {/* Centralizar Flor da Cidade */}
+          <div className="flex-grow flex justify-center">
+            <h1 className="text-recifeGold text-4xl font-bold text-center">Flor da Cidade</h1>
+          </div>
+
           <AccessibilityMenu />
         </div>
       </header>
 
+      {/* Corpo principal */}
       <main
         className="flex-grow flex flex-col items-center justify-center bg-white bg-opacity-80 p-8 rounded-lg shadow-lg bg-cover"
-        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/baoba.jpg)` }}
+        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/baoba.svg)` }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/images/transferir.png`}
+          src={`${process.env.PUBLIC_URL}/images/transferir7.JPG`}
           alt="Prefeitura do Recife"
           className="mx-auto"
           style={{
             width: "450px",
             height: "200px",
             border: "none",
-            marginBottom: "20px"
+            marginBottom: "20px",
           }}
         />
         <h1 className="text-3xl font-bold mb-8 text-recifeGold">Bem-vindo ao Cultiva Cursos</h1>
@@ -47,6 +54,7 @@ const HomePage = () => {
         </div>
       </main>
 
+      {/* Rodapé */}
       <footer className="bg-recifeBlue p-4 shadow-lg flex justify-center items-center relative">
         {/* Redes sociais à direita */}
         <div className="absolute right-4 flex space-x-4">
@@ -68,7 +76,7 @@ const HomePage = () => {
         </div>
 
         {/* Texto centralizado */}
-        <p className="text-recifeGold">&copy; 2024 Prefeitura do Recife</p>
+        <p className="text-recifeGold text-center">&copy; 2024 Prefeitura do Recife</p>
       </footer>
     </div>
   );

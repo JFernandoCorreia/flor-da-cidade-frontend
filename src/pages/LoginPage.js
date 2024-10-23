@@ -43,7 +43,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/path-to-your-background-image.jpg')" }}>
+    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/images/baoba.svg')" }}>
       <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md">
         <label htmlFor="email" className="block mb-2 text-recifeGold">E-mail</label>
         <input type="email" name="email" value={credentials.email} onChange={handleChange} placeholder="Email" className="block w-full p-2 border rounded text-black" />

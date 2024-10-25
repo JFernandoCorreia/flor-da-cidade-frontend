@@ -44,7 +44,7 @@ const AccessibilityMenu = () => {
       {/* Botão para abrir o menu */}
       {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
-        className="text-recifeGold font-bold text-xl"
+        className="text-recifeWhite font-bold text-xl"
         onClick={() => setIsOpen(!isOpen)}  // Alterna o menu
       >
         Acessibilidade

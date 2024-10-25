@@ -1,13 +1,13 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '', matricula: '', setor: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  
+  const navigate = useNavigate(); // Para navegação
+
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -17,52 +17,63 @@ const LoginPage = () => {
     setErrorMessage('');
     setSuccessMessage('');
 
-    // Validação dos campos
-    if (!credentials.email || !credentials.password) {
-      setErrorMessage('Por favor, preencha o email e a senha.');
-      return;
-    }
-
     try {
-      const response = await axios.post('/login', credentials); 
-      const token = response.data.jwt; // Obtenha o token JWT da resposta
-      localStorage.setItem('token', token);
+      const response = await axios.post('http://localhost:5000/api/login', credentials);
       setSuccessMessage('Login bem-sucedido!');
-      navigate('/');
+      navigate('/'); // Redireciona para a página inicial após o login
     } catch (error) {
-      setErrorMessage('Erro ao fazer login.');
+      setErrorMessage('Falha ao realizar login. Verifique suas credenciais.');
     }
-  };
-
-  const handleConectaRecifeClick = () => {
-    window.open('https://conectarecife.recife.pe.gov.br/', '_blank');
-  };
-
-  const handleGovBrClick = () => {
-    window.open('https://sso.acesso.gov.br/login?client_id=portal-logado.estaleiro.serpro.gov.br&authorization_id=1928af70229', '_blank');
   };
 
   return (
-    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/images/baoba.svg')" }}>
-      <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md">
-        <label htmlFor="email" className="block mb-2 text-recifeGold">E-mail</label>
-        <input type="email" name="email" value={credentials.email} onChange={handleChange} placeholder="Email" className="block w-full p-2 border rounded text-black" />
+    <div className="h-screen flex justify-center items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-recifeBlue p-8 rounded-lg shadow-lg flex flex-col space-y-4 w-1/3"
+      >
+        <h2 className="text-2xl font-bold text-white mb-4">Login</h2>
+        
+        <label htmlFor="email" className="block mb-2 text-recifeWhite">E-mail</label>
+        <input
+          type="email"
+          name="email"
+          value={credentials.email}
+          onChange={handleChange}
+          placeholder="Email"
+          className="p-2 rounded-md border-2"
+        />
+        <label htmlFor="password" className="block mb-2 text-recifeWhite">Senha</label>
+        <input
+          type="password"
+          name="password"
+          value={credentials.password}
+          onChange={handleChange}
+          placeholder="Senha"
+          className="p-2 rounded-md border-2"
+        />
+        <label htmlFor="matricula" className="block mb-2 text-recifeWhite">Matricula</label>
+        <input
+          type="text"
+          name="matricula"
+          value={credentials.matricula}
+          onChange={handleChange}
+          placeholder="Matricula"
+          className="p-2 rounded-md border-2"
+        />
 
-        <label htmlFor="matricula" className="block mb-2 text-recifeGold">Matrícula</label>
-        <input type="text" name="matricula" value={credentials.matricula} onChange={handleChange} placeholder="Matrícula" className="block w-full p-2 border rounded text-black" />
+        <button
+          type="submit"
+          className="bg-recifeGold text-recifeBlue px-6 py-3 rounded-lg shadow-md hover:bg-recifeBlue hover:text-recifeWhite transition duration-300"
+        >
+          Login
+        </button>
 
-        <label htmlFor="password" className="block mb-2 text-recifeGold">Senha</label>
-        <input type="password" name="password" value={credentials.password} onChange={handleChange} placeholder="Senha" className="block w-full p-2 border rounded text-black" />
-
-        <button type="submit" className="bg-recifeBlue text-recifeGold px-4 py-2 rounded w-full">Login</button>
-
-        <div className="mt-6 text-center">
-          <p className="mb-4 text-recifeGold">Conecte-se com:</p>
-          <button className="bg-recifeBlue text-recifeGold px-4 py-2 rounded w-full mb-2" type="button" onClick={handleConectaRecifeClick}>Conecta Recife</button>
-          <button className="bg-recifeBlue text-recifeGold px-4 py-2 rounded w-full" type="button" onClick={handleGovBrClick}>Gov.br</button>
-        </div>
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        {successMessage && <p className="text-green-500">{successMessage}</p>}
       </form>
     </div>
+    
   );
 };
 

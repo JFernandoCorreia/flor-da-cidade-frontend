@@ -104,30 +104,30 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/images/baoba.svg')" }}>
+    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/images/baoba3.jpg')" }}>
       <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md">
-        <label htmlFor="name" className="block mb-2 text-recifeGold">Nome Completo</label>
+        <label htmlFor="name" className="block mb-2 text-recifeWhite">Nome Completo</label>
         <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Nome Completo" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="email" className="block mb-2 text-recifeGold">E-mail</label>
+        <label htmlFor="email" className="block mb-2 text-recifeWhite">E-mail</label>
         <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="cpf" className="block mb-2 text-recifeGold">CPF</label>
+        <label htmlFor="cpf" className="block mb-2 text-recifeWhite">CPF</label>
         <input type="text" name="cpf" value={userData.cpf} onChange={handleChange} placeholder="CPF" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="cep" className="block mb-2 text-recifeGold">CEP</label>
+        <label htmlFor="cep" className="block mb-2 text-recifeWhite">CEP</label>
         <input type="text" name="cep" value={userData.cep} onChange={handleCepChange} placeholder="CEP" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="address" className="block mb-2 text-recifeGold">Logradouro</label>
+        <label htmlFor="address" className="block mb-2 text-recifeWhite">Logradouro</label>
         <input type="text" name="address" value={userData.address} onChange={handleChange} placeholder="Endereço" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="bairro" className="block mb-2 text-recifeGold">Bairro</label>
+        <label htmlFor="bairro" className="block mb-2 text-recifeWhite">Bairro</label>
         <input type="text" name="bairro" value={userData.neighborhood} onChange={handleChange} placeholder="Bairro" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="city" className="block mb-2 text-recifeGold">Cidade</label>
+        <label htmlFor="city" className="block mb-2 text-recifeWhite">Cidade</label>
         <input type="text" name="city" value={userData.city} onChange={handleChange} placeholder="Cidade" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="state" className="block mb-2 text-recifeGold">Estado</label>
+        <label htmlFor="state" className="block mb-2 text-recifeWhite">Estado</label>
         <select name="state" value={userData.state} onChange={handleChange} placeholder="Estado" className="block w-full p-2 border rounded text-black" required>
           <option value="">Selecione um estado</option>
           {estados.map(estado => (
@@ -135,13 +135,13 @@ const RegisterPage = () => {
           ))}
         </select>
 
-        <label htmlFor="phone" className="block mb-2 text-recifeGold">Telefone</label>
+        <label htmlFor="phone" className="block mb-2 text-recifeWhite">Telefone</label>
         <input type="text" name="phone" value={userData.phone} onChange={handleChange} placeholder="Telefone" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="password" className="block mb-2 text-recifeGold">Senha</label>
+        <label htmlFor="password" className="block mb-2 text-recifeWhite">Senha</label>
         <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Senha" className="block w-full p-2 border rounded text-black" required />
 
-        <button type="submit" className="bg-recifeBlue text-recifeGold px-4 py-2 rounded w-full">Cadastrar</button>
+        <button type="submit" className="bg-recifeBlue text-recifeWhite px-4 py-2 rounded w-full">Cadastrar</button>
       </form>
 
       <ToastContainer />

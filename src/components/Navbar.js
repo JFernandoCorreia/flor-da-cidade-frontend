@@ -17,7 +17,7 @@ function Navbar() {
 
   return (
     showNavbar && (
-      <nav className="bg-recifeBlue text-recifeGold p-4">
+      <nav className="bg-recifeBlue text-recifeWhite p-4">
         <div className="container mx-auto flex justify-start items-center">
           <div className="text-lg font-bold mr-4">
             <Link to="/">Homepage</Link>
@@ -52,13 +52,13 @@ function Navbar() {
         {isOpen && (
           <div className="md:hidden mt-4 space-y-2">
             <Link
-              className="block text-recifeGold hover:text-recifeLight font-bold text-lg mr-4"
+              className="block text-recifeWhite hover:text-recifeLight font-bold text-lg mr-4"
               to="/"
               onClick={toggleMenu}>Homepage</Link>
 
             {location.pathname === '/login' && (
               <Link
-                className="block text-recifeGold hover:text-recifeLight font-bold text-lg mr-4"
+                className="block text-recifeWhite hover:text-recifeLight font-bold text-lg mr-4"
                 to="/register"
                 onClick={toggleMenu}>Cadastro de Interessados</Link>
             )}

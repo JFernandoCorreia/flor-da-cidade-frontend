@@ -22,7 +22,7 @@ code {
 }
 
 body {
-  background-image: url('/public/images/baoba.jpg');
+  background-image: url('/public/images/baoba3.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -33,7 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   opacity: 1; /* Definindo opacidade total */
-  filter: brightness(1.1); /* Aumentando o brilho da imagem */
+  filter: brightness(1.2); /* Aumentando o brilho da imagem */
 }
 
 .overlay {
@@ -46,7 +46,7 @@ body {
 }
 
 main {
-  background-color: rgba(255, 255, 255, 0.8); /* Transparência */
+  background-color: transparent; /* Transparência */
   width: 100%;
   padding: 20px;
   flex: 1;

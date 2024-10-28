@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -18,12 +20,21 @@ const LoginPage = () => {
     setSuccessMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/login', credentials);
+      const response = await axios.post('/login', credentials);
       setSuccessMessage('Login bem-sucedido!');
+      localStorage.setItem('token', response.data.token);
       navigate('/'); // Redireciona para a página inicial após o login
     } catch (error) {
       setErrorMessage('Falha ao realizar login. Verifique suas credenciais.');
     }
+  };
+
+  const handleConectaRecifeClick = () => {
+    window.open('https://conectarecife.recife.pe.gov.br/', '_blank');
+  };
+
+  const handleGovBrClick = () => {
+    window.open('https://sso.acesso.gov.br/login?client_id=portal-logado.estaleiro.serpro.gov.br&authorization_id=1928af70229', '_blank');
   };
 
   return (
@@ -71,9 +82,15 @@ const LoginPage = () => {
 
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         {successMessage && <p className="text-green-500">{successMessage}</p>}
+
+        <h2 className="text-2xl font-bold text-recifeWhite mb-2">Acessar com:</h2>
+        {/* Botões de login externo */}
+        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+        <button onClick={handleConectaRecifeClick} className="bg-recifeGold text-recifeBlue px-4 py-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Conecta Recife</button>
+        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+        <button onClick={handleGovBrClick} className="bg-recifeGold text-recifeBlue px-4 py-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Gov.br</button>
       </form>
     </div>
-    
   );
 };
 

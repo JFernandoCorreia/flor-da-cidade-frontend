@@ -30,8 +30,8 @@ const RegisterPage = () => {
   };
 
   const handleCepChange = async (event) => {
-    const cep = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-    setUserData({ ...userData, cep: cep }); // Permite a digitação do CEP
+    const cep = event.target.value.replace(/\D/g, '');
+    setUserData({ ...userData, cep: cep });
 
     if (cep.length === 8) {
       try {
@@ -56,36 +56,6 @@ const RegisterPage = () => {
     }
   };
 
-  const estados = [
-    { value: 'AC', label: 'Acre' },
-    { value: 'AL', label: 'Alagoas' },
-    { value: 'AP', label: 'Amapá' },
-    { value: 'AM', label: 'Amazonas' },
-    { value: 'BA', label: 'Bahia' },
-    { value: 'CE', label: 'Ceará' },
-    { value: 'DF', label: 'Distrito Federal' },
-    { value: 'ES', label: 'Espírito Santo' },
-    { value: 'GO', label: 'Goiás' },
-    { value: 'MA', label: 'Maranhão' },
-    { value: 'MT', label: 'Mato Grosso' },
-    { value: 'MS', label: 'Mato Grosso do Sul' },
-    { value: 'MG', label: 'Minas Gerais' },
-    { value: 'PA', label: 'Pará' },
-    { value: 'PB', label: 'Paraíba' },
-    { value: 'PR', label: 'Paraná' },
-    { value: 'PE', label: 'Pernambuco' },
-    { value: 'PI', label: 'Piauí' },
-    { value: 'RJ', label: 'Rio de Janeiro' },
-    { value: 'RN', label: 'Rio Grande do Norte' },
-    { value: 'RS', label: 'Rio Grande do Sul' },
-    { value: 'RO', label: 'Rondônia' },
-    { value: 'RR', label: 'Roraima' },
-    { value: 'SC', label: 'Santa Catarina' },
-    { value: 'SP', label: 'São Paulo' },
-    { value: 'SE', label: 'Sergipe' },
-    { value: 'TO', label: 'Tocantins' },
-  ];
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
@@ -93,9 +63,10 @@ const RegisterPage = () => {
 
     try {
       const response = await api.post('/register', userData);
-      console.log(response.data);
       setSuccessMessage('Cadastro realizado com sucesso!');
       toast.success('Cadastro realizado com sucesso!');
+      localStorage.setItem('token', response.data.token);
+      navigate('/');
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
       setErrorMessage('Erro ao cadastrar. Por favor, tente novamente.');
@@ -103,9 +74,19 @@ const RegisterPage = () => {
     }
   };
 
+  // Função para abrir o Conecta Recife
+  const handleConectaRecifeClick = () => {
+    window.open('https://conectarecife.recife.pe.gov.br/', '_blank');
+  };
+
+  // Função para abrir o Gov.br
+  const handleGovBrClick = () => {
+    window.open('https://sso.acesso.gov.br/login?client_id=portal-logado.estaleiro.serpro.gov.br&authorization_id=1928af70229', '_blank');
+  };
+
   return (
     <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/images/baoba3.jpg')" }}>
-      <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md">
+      <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md bg-recifeBlue p-8 rounded-lg shadow-lg">
         <label htmlFor="name" className="block mb-2 text-recifeWhite">Nome Completo</label>
         <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Nome Completo" className="block w-full p-2 border rounded text-black" required />
 
@@ -121,8 +102,8 @@ const RegisterPage = () => {
         <label htmlFor="address" className="block mb-2 text-recifeWhite">Logradouro</label>
         <input type="text" name="address" value={userData.address} onChange={handleChange} placeholder="Endereço" className="block w-full p-2 border rounded text-black" required />
 
-        <label htmlFor="bairro" className="block mb-2 text-recifeWhite">Bairro</label>
-        <input type="text" name="bairro" value={userData.neighborhood} onChange={handleChange} placeholder="Bairro" className="block w-full p-2 border rounded text-black" required />
+        <label htmlFor="neighborhood" className="block mb-2 text-recifeWhite">Bairro</label>
+        <input type="text" name="neighborhood" value={userData.neighborhood} onChange={handleChange} placeholder="Bairro" className="block w-full p-2 border rounded text-black" required />
 
         <label htmlFor="city" className="block mb-2 text-recifeWhite">Cidade</label>
         <input type="text" name="city" value={userData.city} onChange={handleChange} placeholder="Cidade" className="block w-full p-2 border rounded text-black" required />
@@ -130,18 +111,33 @@ const RegisterPage = () => {
         <label htmlFor="state" className="block mb-2 text-recifeWhite">Estado</label>
         <select name="state" value={userData.state} onChange={handleChange} placeholder="Estado" className="block w-full p-2 border rounded text-black" required>
           <option value="">Selecione um estado</option>
-          {estados.map(estado => (
-            <option key={estado.value} value={estado.value}>{estado.label}</option>
+          {['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'].map((estado) => (
+            <option key={estado} value={estado}>{estado}</option>
           ))}
         </select>
 
         <label htmlFor="phone" className="block mb-2 text-recifeWhite">Telefone</label>
         <input type="text" name="phone" value={userData.phone} onChange={handleChange} placeholder="Telefone" className="block w-full p-2 border rounded text-black" required />
 
+        <label htmlFor="matricula" className="block mb-2 text-recifeWhite">Matrícula</label>
+        <input type="text" name="matricula" value={userData.matricula} onChange={handleChange} placeholder="Matrícula" className="block w-full p-2 border rounded text-black" required />
+
+        <label htmlFor="setor" className="block mb-2 text-recifeWhite">Setor</label>
+        <input type="text" name="setor" value={userData.setor} onChange={handleChange} placeholder="Setor" className="block w-full p-2 border rounded text-black" />
+
         <label htmlFor="password" className="block mb-2 text-recifeWhite">Senha</label>
         <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Senha" className="block w-full p-2 border rounded text-black" required />
 
-        <button type="submit" className="bg-recifeBlue text-recifeWhite px-4 py-2 rounded w-full">Cadastrar</button>
+        <button type="submit" className="bg-recifeGold text-recifeBlue px-4 py-2 m-0 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite w-full">Cadastrar</button>
+
+        {/* Botões para login externo centralizados */}
+        <div className="text-center mt-6">
+          <p className=" text-2xl font-bold text-recifeWhite mb-2">Cadastrar com:</p>
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button onClick={handleConectaRecifeClick} className="bg-recifeGold text-recifeBlue px-4 py-2 m-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Conecta Recife</button>
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button onClick={handleGovBrClick} className="bg-recifeGold text-recifeBlue px-4 py-2 m-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Gov.br</button>
+        </div>
       </form>
 
       <ToastContainer />

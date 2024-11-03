@@ -36,6 +36,12 @@ body {
   filter: brightness(1.2); /* Aumentando o brilho da imagem */
 }
 
+.logo-seau {
+  width: 270px;
+  height: auto;
+}
+
+
 .overlay {
   background-color: rgba(0,0,0,3); /* Overlay transparente para melhorar a visibilidade do fundo */
   position: absolute;

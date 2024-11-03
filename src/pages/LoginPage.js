@@ -38,10 +38,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center px-4" style={{ backgroundImage: "url('/images/baoba3.jpg')" }}>
       <form
         onSubmit={handleSubmit}
-        className="bg-recifeBlue p-8 rounded-lg shadow-lg flex flex-col space-y-4 w-1/3"
+        className="w-full max-w-md bg-transparent p-8 rounded-lg shadow-lg space-y-4"
       >
         <h2 className="text-2xl font-bold text-white mb-4">Login</h2>
         
@@ -52,7 +52,7 @@ const LoginPage = () => {
           value={credentials.email}
           onChange={handleChange}
           placeholder="Email"
-          className="p-2 rounded-md border-2"
+          className="p-3 w-full rounded-md border-2"
         />
         <label htmlFor="password" className="block mb-2 text-recifeWhite">Senha</label>
         <input
@@ -61,7 +61,7 @@ const LoginPage = () => {
           value={credentials.password}
           onChange={handleChange}
           placeholder="Senha"
-          className="p-2 rounded-md border-2"
+          className="p-3 w-full rounded-md border-2"
         />
         <label htmlFor="matricula" className="block mb-2 text-recifeWhite">Matricula</label>
         <input
@@ -70,12 +70,12 @@ const LoginPage = () => {
           value={credentials.matricula}
           onChange={handleChange}
           placeholder="Matricula"
-          className="p-2 rounded-md border-2"
+          className="p-3 w-full rounded-md border-2"
         />
 
         <button
           type="submit"
-          className="bg-recifeGold text-recifeBlue px-6 py-3 rounded-lg shadow-md hover:bg-recifeBlue hover:text-recifeWhite transition duration-300"
+          className="w-full bg-recifeGold text-recifeBlue px-6 py-3 rounded-lg shadow-md hover:bg-recifeBlue hover:text-recifeWhite transition duration-300"
         >
           Login
         </button>
@@ -83,12 +83,14 @@ const LoginPage = () => {
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         {successMessage && <p className="text-green-500">{successMessage}</p>}
 
-        <h2 className="text-2xl font-bold text-recifeWhite mb-2">Acessar com:</h2>
         {/* Botões de login externo */}
-        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-        <button onClick={handleConectaRecifeClick} className="bg-recifeGold text-recifeBlue px-4 py-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Conecta Recife</button>
-        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-        <button onClick={handleGovBrClick} className="bg-recifeGold text-recifeBlue px-4 py-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Gov.br</button>
+        <div className="text-center mt-6">
+          <p className=" text-2xl font-bold text-recifeWhite mb-2">Logar com:</p>
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button onClick={handleConectaRecifeClick} className="bg-recifeGold text-recifeBlue px-4 py-2 m-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Conecta Recife</button>
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button onClick={handleGovBrClick} className="bg-recifeGold text-recifeBlue px-4 py-2 m-2 rounded-lg hover:bg-recifeBlue hover:text-recifeWhite">Gov.br</button>
+        </div>
       </form>
     </div>
   );

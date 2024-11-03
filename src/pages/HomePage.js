@@ -6,11 +6,11 @@ import AccessibilityMenu from '../components/AccessibilityMenu';
 const HomePage = () => {
   return (
     <div className="relative h-screen flex flex-col">
-      <header className="bg-recifeBlue p-4 shadow-lg">
+      <header className="bg-recifeBlue  bg-opacity-100 p-4 shadow-lg">
         <div className="container mx-auto flex flex-wrap justify-between items-center">
           {/* Texto da Secretaria */}
-          <div className="w-full sm:w-1/3 text-center sm:text-left mb-4 sm:mb-0">
-            <h1 className="text-recifeWhite font-bold text-lg">Secretaria de Agricultura Urbana</h1>
+          <div className="w-full sm:w-1/3 text-center sm:text-left mb-4 sm:mb-auto">
+            <img src={`${process.env.PUBLIC_URL}/images/logo-seau.png`} alt="Prefeitura do Recife" className="logo-seau" />
           </div>
 
           {/* Centralizar Flor da Cidade */}
@@ -25,7 +25,7 @@ const HomePage = () => {
       </header>
 
       {/* Corpo principal */}
-      <main className="flex-grow flex flex-col items-center justify-center bg-white bg-opacity-80 p-4 sm:p-8 rounded-lg shadow-lg"
+      <main className="flex-grow flex flex-col items-center justify-center bg-white bg-opacity-80 p-4 sm:p-8 rounded-lg shadow-lg mb-20" 
         style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/baoba3.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-recifeWhite">Bem-vindo ao Cultiva Cursos</h1>
@@ -39,19 +39,37 @@ const HomePage = () => {
         </div>
       </main>
 
-      {/* Rodapé */}
-      <footer className="bg-recifeBlue p-4 shadow-lg flex flex-col sm:flex-row justify-center items-center relative">
-        {/* Redes sociais */}
-        <div className="flex justify-center space-x-4 mb-4 sm:mb-0">
-          {/* ... Links de redes sociais ... */}
-        </div>
-
+      {/* Rodapé fixo ao fundo da página com opacidade ajustada */}
+      <footer className="bg-recifeBlue bg-opacity-100 p-4 shadow-lg fixed bottom-0 w-full">
         {/* Texto centralizado */}
-        <div className="flex items-center space-x-4 text-center">
-          <p className="text-recifeWhite">&copy; 2024 Prefeitura do Recife</p>
+        <div className="container mx-auto flex justify-between items-center">
+        
+        <div className="flex items-center justify-center space-x-1 mx-auto">
+          <p className="text-recifeWhite text-base md:text-lg">&copy; 2024 Prefeitura do Recife</p>
           <img src={`${process.env.PUBLIC_URL}/images/transferir7.png`} alt="Prefeitura do Recife" className="w-16 h-auto" />
         </div>
+
+        {/* Links para redes sociais no canto direito com ícones uniformes */}
+        <div className="flex items-center space-x-2 md:space-x-2">
+          <a href="https://www.facebook.com/prefeituradorecife" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <img src={`${process.env.PUBLIC_URL}/images/Facebook_logo.png`} alt="Facebook" className="w-5 h-5" />
+          </a>
+          <a href="https://x.com/prefrecife" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <img src={`${process.env.PUBLIC_URL}/images/x.png`} alt="X" className="w-5 h-5" />
+          </a>
+          <a href="https://www.instagram.com/prefeiturarecife/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src={`${process.env.PUBLIC_URL}/images/instagram.jpeg`} alt="Instagram" className="w-5 h-5" />
+          </a>
+          <a href="https://www.youtube.com/channel/UCxMRq-Mv3UimnqOl6aRrM6Q" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <img src={`${process.env.PUBLIC_URL}/images/youtube.png`} alt="YouTube" className="w-5 h-5" />
+          </a>
+          <a href="https://www.flickr.com/photos/prefeituradorecife/" target="_blank" rel="noopener noreferrer" aria-label="Flickr">
+            <img src={`${process.env.PUBLIC_URL}/images/flickr.png`} alt="Flickr" className="w-5 h-5" />
+          </a>
+          </div>
+        </div>
       </footer>
+
     </div>
   );
 };

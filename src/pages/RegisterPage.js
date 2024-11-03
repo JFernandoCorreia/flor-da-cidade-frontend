@@ -85,8 +85,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="bg-cover bg-center min-h-screen flex justify-center items-center" style={{ backgroundImage: "url('/images/baoba3.jpg')" }}>
-      <form onSubmit={handleSubmit} className="mt-4 space-y-4 w-3/4 max-w-md bg-recifeBlue p-8 rounded-lg shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center px-4" style={{ backgroundImage: "url('/images/baoba3.jpg')" }}>
+      <form onSubmit={handleSubmit} className="w-full max-w-md bg-transparent p-8 rounded-lg shadow-lg space-y-4">
         <label htmlFor="name" className="block mb-2 text-recifeWhite">Nome Completo</label>
         <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Nome Completo" className="block w-full p-2 border rounded text-black" required />
 

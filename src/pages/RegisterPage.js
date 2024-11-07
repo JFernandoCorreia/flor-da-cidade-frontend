@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useState } from 'react';
-import api from '../services/api';
+import api from '../service/api';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,7 +35,7 @@ const RegisterPage = () => {
 
     if (cep.length === 8) {
       try {
-        const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+        const response = await api.get(`https://viacep.com.br/ws/${cep}/json/`);
         const data = response.data;
 
         if (!data.erro) {
@@ -56,13 +56,34 @@ const RegisterPage = () => {
     }
   };
 
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const cpfRegex = /^\d{11}$/;
+  
+    const isEmailValid = emailRegex.test(userData.email);
+    const isCpfValid = cpfRegex.test(userData.cpf);
+  
+    if (!isEmailValid) {
+      setErrorMessage('E-mail inválido.');
+      return false;
+    }
+    if (!isCpfValid) {
+      setErrorMessage('CPF inválido. Deve conter 11 dígitos.');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
 
+    if (!validateForm()) return;
+
+    // Envio do formulário
     try {
-      const response = await api.post('/register', userData);
+      const response = await api.post('/api/users/register', userData);
       setSuccessMessage('Cadastro realizado com sucesso!');
       toast.success('Cadastro realizado com sucesso!');
       localStorage.setItem('token', response.data.token);

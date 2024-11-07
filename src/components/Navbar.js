@@ -5,14 +5,14 @@ function Navbar() {
   const location = useLocation();  // Pega a rota atual
 
   // Verifica se a rota atual é uma das rotas de Cadastro ou Login
-  const showNavbar = location.pathname === '/register' || location.pathname === '/login';
+  const showNavbar = ['/register', '/login', '/dashboard', '/profile'].includes(location.pathname);
 
   return (
     showNavbar && (
       <nav className="bg-recifeBlue text-recifeWhite p-4">
         <div className="container mx-auto flex justify-start items-center">
           <div className="text-lg font-bold mr-4">
-            <Link to="/">Homepage</Link>
+            <Link to="/home">Homepage</Link>
           </div>
         </div>
       </nav>

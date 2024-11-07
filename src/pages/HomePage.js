@@ -14,8 +14,11 @@ const HomePage = () => {
           </div>
 
           {/* Centralizar Flor da Cidade */}
+          {/* Link para Flor da Cidade Centralizado */}
           <div className="w-full sm:w-1/3 flex justify-center mb-4 sm:mb-0">
-            <h1 className="text-recifeWhite text-2xl sm:text-4xl font-bold text-center">Flor da Cidade</h1>
+            <Link to="/" className="text-recifeWhite font-bold text-2xl sm:text-4xl hover:underline">
+              Flor da Cidade
+            </Link>
           </div>
 
           <div className="w-full sm:w-1/3 flex justify-center sm:justify-end">

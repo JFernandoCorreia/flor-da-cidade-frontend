@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import React, { createContext, useReducer } from 'react';
 
 // 1. Criando o contexto
@@ -27,5 +29,11 @@ export const UserProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
+};
+
+// 5. Adicionando token
+const login = (user, token) => {
+  localStorage.setItem('token', token);
+  dispatch({ type: 'LOGIN', payload: user });
 };
   

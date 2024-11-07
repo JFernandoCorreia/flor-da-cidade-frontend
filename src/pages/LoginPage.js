@@ -10,23 +10,39 @@ const LoginPage = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate(); // Para navegação
 
-  const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmailValid = emailRegex.test(credentials.email);
+    const isMatriculaValid = /^[0-9]*$/.test(credentials.matricula);
+
+    if (!isEmailValid) {
+      setErrorMessage('E-mail inválido.');
+      return false;
+    }
+    if (!isMatriculaValid) {
+      setErrorMessage('Matrícula deve conter apenas números.');
+      return false;
+    }
+    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
-    setSuccessMessage('');
+
+    if (!validateForm()) return;
 
     try {
-      const response = await axios.post('/login', credentials);
-      setSuccessMessage('Login bem-sucedido!');
+      const response = await api.post('/login', credentials);
       localStorage.setItem('token', response.data.token);
-      navigate('/'); // Redireciona para a página inicial após o login
+      navigate('/');
     } catch (error) {
       setErrorMessage('Falha ao realizar login. Verifique suas credenciais.');
     }
+  };
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const handleConectaRecifeClick = () => {

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import MainPage from './pages/MainPage';
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
         <div className="relative h-full">
           <Navbar />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>

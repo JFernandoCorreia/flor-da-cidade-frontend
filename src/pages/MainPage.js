@@ -30,8 +30,8 @@ const MainPage = () => {
       </header>
 
       {/* Corpo principal */}
-      <main className="flex-grow bg-white bg-opacity-80 p-4 sm:p-8 rounded-lg shadow-lg" 
-        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/baoba3.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+      <main className="flex-grow bg-white bg-opacity-80 p-4 sm:p-8 rounded-lg shadow-lg"
+        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/flores.png)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <h2 className="text-2xl font-bold text-center text-recifeWhite mb-4">Bem vindo ao Projeto Flor da Cidade</h2>
         

@@ -54,7 +54,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cover bg-center px-4" style={{ backgroundImage: "url('/images/baoba3.jpg')" }}>
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center px-4" style={{ backgroundImage: "url('/images/flores.png')" }}>
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md bg-transparent p-8 rounded-lg shadow-lg space-y-4"

@@ -1,4 +1,3 @@
-// HomePage.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AccessibilityMenu from '../components/AccessibilityMenu';
@@ -29,7 +28,7 @@ const HomePage = () => {
 
       {/* Corpo principal */}
       <main className="flex-grow flex flex-col items-center justify-center bg-white bg-opacity-80 p-4 sm:p-8 rounded-lg shadow-lg mb-20" 
-        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/baoba3.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/flores.png)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-recifeWhite">Bem-vindo ao Cultiva Cursos</h1>
         <div className="space-y-4 w-full sm:w-3/4 max-w-md text-center">

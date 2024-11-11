@@ -1,4 +1,3 @@
-// MainPage.js
 import React from 'react';
 import AccessibilityMenu from '../components/AccessibilityMenu';
 
@@ -41,7 +40,7 @@ const MainPage = () => {
             <img src={`${process.env.PUBLIC_URL}/images/hortas.jpeg`} alt="Hortas" className="w-full h-50 object-cover rounded" />
             <p className="text-lg mt-2 text-recifeWhite">Conheça o projeto Hortas, que promove o cultivo sustentável nas comunidades.</p>
             <a
-              href={process.env.REACT_APP_APP_1_URL}
+              href={process.env.REACT_APP_API_URL || 'http://localhost:3001/'}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-recifeBlue text-recifeWhite px-6 py-3 mt-2 rounded-lg shadow-md hover:bg-recifeGold hover:text-recifeBlue transition duration-300 inline-block"
@@ -69,7 +68,9 @@ const MainPage = () => {
             <img src={`${process.env.PUBLIC_URL}/images/cursos.jpeg`} alt="Cultiva Cursos" className="w-full h-50 object-cover rounded" />
             <p className="text-lg mt-2 text-recifeWhite">Participe dos cursos oferecidos pelo programa Cultiva Cursos.</p>
             <a
-              href="/home" 
+              href='/home'
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-recifeBlue text-recifeWhite px-6 py-3 mt-2 rounded-lg shadow-md hover:bg-recifeGold hover:text-recifeBlue transition duration-300 inline-block"
             >
               Acessar Cultiva Cursos
